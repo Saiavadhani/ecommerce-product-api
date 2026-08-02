@@ -1,9 +1,7 @@
 package org.example.ecomproject.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -16,13 +14,19 @@ import java.util.Date;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int prodId;
-    private String productName;
+    private int id;
+    private String name;
     private BigDecimal price;
-    private String prodDesc;
+    private String desc;
     private String brand;
     private String category;
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
     private Date releaseDate;
     private boolean available;
-    private int quantity;
+    private int stockQuantity;
+    private String imageName;
+    private String imageType;
+    @Lob
+    private byte[] imageData;
+
 }
